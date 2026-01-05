@@ -81,7 +81,7 @@ def create_rfm_visualization(input_file='data/rfm_scores.csv'):
     plt.tight_layout()
     
     # Save the plot
-    output_img = 'data/rfm_segments.png'
+    output_img = 'rfm_segments.png'
     plt.savefig(output_img, dpi=300)
     print(f"✅ Success! Visualization saved to {output_img}")
 
