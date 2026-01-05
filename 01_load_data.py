@@ -23,17 +23,17 @@ def load_and_clean_data():
     # --- CLEANING ---
     print("Step 2: Cleaning Data...")
 
-    # 1. Drop rows with missing Customer ID (We can't analyze customers who are anonymous)
+    # 1. Remove rows with missing Customer ID
     df.dropna(subset=['Customer ID'], inplace=True)
     
     # 2. Remove Cancelled Orders (Invoices starting with 'C')
     df['Invoice'] = df['Invoice'].astype(str)
     df = df[~df['Invoice'].str.startswith('C')]
 
-    # 3. Remove weird negative prices/quantities (Adjustments/Errors)
+    # 3. Remove negative prices/quantities
     df = df[(df['Quantity'] > 0) & (df['Price'] > 0)]
 
-    # 4. Convert Customer ID to integer (it often loads as a float)
+    # 4. Convert Customer ID to integer
     df['Customer ID'] = df['Customer ID'].astype(int)
 
     print(f"✅ Cleaning Complete. Rows Remaining: {df.shape[0]:,}")
